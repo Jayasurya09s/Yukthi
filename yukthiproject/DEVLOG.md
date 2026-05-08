@@ -25,3 +25,31 @@
 - Integrate OpenRouter for AI-generated personalized summaries.
 - Design Supabase schema for audits and leads.
 - Start building test coverage for the audit engine.
+
+## Day 2 — 2026-05-08
+
+**Hours worked:** 6
+
+**What I did:**
+- Built the first production-grade API routes for audit generation, AI summaries, and public audit retrieval.
+- Integrated Supabase as the persistence layer for audits and leads.
+- Implemented OpenRouter integration for executive-style AI-generated summaries.
+- Added structured prompt engineering with deterministic financial isolation.
+- Connected the modular audit engine to API orchestration flows.
+- Successfully tested audit generation, optimization recommendations, persistence, and AI summary generation using Postman.
+- Implemented graceful fallback handling for AI failures.
+
+**What I learned:**
+- Financial recommendation systems require extremely strict prompt constraints to prevent hallucinated savings values.
+- Separating deterministic financial analysis from LLM summarization significantly improves reliability.
+- Service-layer architecture simplifies API orchestration and future scaling.
+
+**Blockers / what I'm stuck on:**
+- Need stronger recommendation scoring and overlap detection systems.
+- Need frontend architecture that cleanly maps to backend optimization responses.
+
+**Plan for tomorrow:**
+- Build the landing page and dynamic AI spend form.
+- Connect frontend form flow to backend APIs.
+- Build results visualization system with charts and recommendation cards.
+- Design shareable public audit pages.

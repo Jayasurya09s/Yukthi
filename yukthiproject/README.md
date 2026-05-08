@@ -59,3 +59,19 @@ The platform performs deterministic financial analysis on AI subscriptions, dete
 ```bash
 npm install
 npm run dev
+
+## Backend Progress
+
+The backend architecture currently includes:
+- modular audit orchestration
+- pricing intelligence services
+- optimization engine
+- recommendation scoring
+- OpenRouter-based AI summaries
+- Supabase persistence layer
+- public audit retrieval APIs
+
+Current API endpoints:
+- POST /api/audit
+- POST /api/summary
+- GET /api/share
