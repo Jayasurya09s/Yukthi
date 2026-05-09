@@ -1,20 +1,52 @@
 # Prompt Engineering
 
-## Audit Summary Prompt
+## Philosophy
 
-The platform uses LLMs only for natural-language summarization of deterministic audit results.
+The platform intentionally limits LLM responsibilities to:
+- summarization
+- readability
+- executive-style communication
 
-LLMs are intentionally NOT used for:
-- financial calculations
-- pricing comparisons
+LLMs are NOT used for:
+- pricing calculations
 - savings estimation
 - recommendation generation
+- financial decision making
 
-This decision improves:
-- audit reliability
-- deterministic outputs
+This architecture prevents hallucinated financial outputs and improves deterministic reliability.
+
+---
+
+# Why Deterministic Financial Logic Matters
+
+Financial recommendation systems require:
 - reproducibility
-- financial trustworthiness
+- numerical correctness
+- consistency
+- auditability
+
+Purely AI-generated financial recommendations can:
+- hallucinate values
+- generate inconsistent outputs
+- reduce user trust
+
+To avoid this:
+- all calculations are deterministic
+- AI only consumes finalized audit outputs
+
+---
+
+# Current LLM Usage
+
+## OpenRouter
+
+The system uses:
+- OpenRouter
+- Claude / GPT-compatible models
+
+Purpose:
+- executive summary generation
+- readable audit explanations
 
 ---
 
@@ -36,26 +68,110 @@ STRICT RULES:
 
 ---
 
-# Why This Prompt Structure
+# Prompt Inputs
 
-The prompt is intentionally constrained because financial recommendation systems are highly sensitive to hallucinated values.
+The model receives:
+- deterministic audit outputs
+- recommendation data
+- savings calculations
+- optimization metadata
 
-The model is only responsible for:
-- summarization
-- readability
-- executive-style communication
+Example payload:
 
-All calculations originate from the deterministic audit engine.
+```json
+{
+  "totalMonthlySavings": 40,
+  "totalAnnualSavings": 480,
+  "recommendations": [
+    {
+      "tool": "cursor",
+      "recommendedPlan": "Pro"
+    }
+  ]
+}
+```
 
 ---
 
 # Initial Problems Encountered
 
-During early testing, the model hallucinated incorrect savings values that differed from the audit engine outputs.
+## Hallucinated Savings Values
 
-To address this:
-- stricter constraints were added
-- explicit anti-hallucination instructions were introduced
-- deterministic pricing calculations remained isolated from the LLM layer
+During early testing:
+- the model generated incorrect savings estimates
+- summary outputs differed from deterministic audit calculations
 
-This separation significantly improved consistency and reliability.
+Example issue:
+- audit engine returned `$40/month`
+- LLM hallucinated `$120/month`
+
+This created:
+- trust issues
+- financial inconsistency
+- unreliable summaries
+
+---
+
+# Solution
+
+The following safeguards were added:
+
+## 1. Deterministic Isolation
+AI never calculates financial outputs.
+
+---
+
+## 2. Explicit Constraints
+Prompts explicitly prohibit:
+- inventing numbers
+- estimating values
+- changing savings calculations
+
+---
+
+## 3. Structured Inputs
+The LLM only receives finalized deterministic outputs.
+
+---
+
+## 4. Graceful Fallbacks
+If OpenRouter fails:
+- deterministic audit results still render successfully
+- fallback summaries are returned
+
+---
+
+# Prompt Design Goals
+
+The prompts aim to produce:
+- concise executive summaries
+- professional tone
+- trustworthy explanations
+- consistent outputs
+- readable recommendations
+
+---
+
+# Future Prompt Improvements
+
+Potential future additions:
+- organization-specific summaries
+- technical vs executive summary modes
+- multilingual summaries
+- optimization-priority scoring explanations
+- adaptive recommendation narratives
+
+---
+
+# Architectural Insight
+
+One of the biggest lessons from building this platform was realizing that:
+- AI should enhance deterministic systems
+- not replace critical financial logic
+
+The strongest architecture combined:
+- deterministic pricing intelligence
+- structured recommendation systems
+- constrained AI summarization
+
+rather than fully AI-generated analysis.

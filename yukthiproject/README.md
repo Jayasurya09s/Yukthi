@@ -1,77 +1,224 @@
 # Yukthi
 
-Yukthi is a SaaS-style web platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI tooling expenses across platforms like ChatGPT, Claude, Cursor, GitHub Copilot, Gemini, and others.
+Yukthi is a full-stack SaaS platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI infrastructure spending across tools like ChatGPT, Claude, Cursor, GitHub Copilot, Gemini, and other AI platforms.
 
-The platform performs deterministic financial analysis on AI subscriptions, detects inefficient pricing plans, identifies overlapping tool usage, and generates actionable optimization recommendations with estimated monthly and annual savings.
+The platform performs deterministic pricing analysis, identifies inefficient subscriptions, detects optimization opportunities, and generates AI-powered executive summaries with estimated savings recommendations.
 
-## Core Features
+---
 
-- AI tool spend analysis
-- Pricing intelligence engine
-- Optimization recommendation system
-- AI-generated personalized summaries
-- Public shareable audit reports
-- Lead capture system for high-savings users
-- Realtime-ready pricing architecture
-- Deterministic audit calculations
+# Live Product Vision
 
-## Tech Stack
+The platform is designed as an AI infrastructure optimization system rather than a simple pricing calculator.
 
-### Frontend
+Users can:
+- analyze AI tooling spend
+- identify inefficient pricing plans
+- detect overlapping subscriptions
+- generate optimization recommendations
+- save and share audit reports
+- receive AI-generated executive summaries
+
+---
+
+# Core Features
+
+## Yukthi Engine
+- deterministic pricing analysis
+- optimization recommendation engine
+- savings calculation system
+- subscription efficiency analysis
+
+## Pricing Intelligence Layer
+- normalized vendor pricing architecture
+- centralized pricing data services
+- structured plan comparison logic
+
+## AI Summary System
+- OpenRouter-powered executive summaries
+- deterministic financial isolation
+- hallucination-safe prompt engineering
+
+## Public Shareable Reports
+- dynamic public audit URLs
+- OpenGraph metadata
+- social sharing support
+
+## Lead Capture Infrastructure
+- email collection workflow
+- Supabase persistence
+- Resend email integration
+
+## Analytics & Visualization
+- savings dashboards
+- optimization scoring
+- spend comparison charts
+- recommendation cards
+
+---
+
+# Tech Stack
+
+## Frontend
 - Next.js 15
 - TypeScript
 - Tailwind CSS
 - shadcn/ui
+- Recharts
+- Framer Motion
 
-### Backend
+## Backend
 - Next.js Route Handlers
 - Modular audit engine architecture
+- Zod validation
+- OpenRouter integration
 
-### Database
+## Database
 - Supabase
 
-### AI Integration
-- OpenRouter API
+## Email Infrastructure
+- Resend
 
-### Deployment
+## Deployment
 - Vercel
 
-## Current Progress
+---
 
-- Project architecture initialized
-- Modular backend structure completed
-- Pricing intelligence layer implemented
-- Recommendation engine foundation completed
-- Optimization engine initialized
+# Architecture Highlights
 
-## Planned Features
+The system intentionally separates:
+- pricing intelligence
+- recommendation generation
+- deterministic calculations
+- AI summarization
 
-- Public audit result pages
-- OpenGraph share previews
-- Personalized AI summaries
-- Email lead capture
-- Benchmark analysis
-- Savings visualizations
-- Realtime pricing verification
+LLMs are NOT used for:
+- pricing calculations
+- savings estimation
+- recommendation generation
 
-## Local Setup
+This architecture improves:
+- reliability
+- reproducibility
+- financial trustworthiness
+
+---
+
+# Product Flow
+
+```txt
+Landing Page
+→ AI Spend Form
+→ Audit Engine
+→ Optimization Analysis
+→ AI Summary Generation
+→ Results Dashboard
+→ Lead Capture
+→ Public Shareable Report
+```
+
+---
+
+# API Endpoints
+
+## POST `/api/audit`
+Generates AI infrastructure optimization audits.
+
+## POST `/api/summary`
+Generates executive-style AI summaries.
+
+## POST `/api/leads`
+Stores leads and sends audit emails.
+
+## GET `/api/share?id=`
+Retrieves public audit reports.
+
+---
+
+# Local Development
+
+## Install Dependencies
 
 ```bash
 npm install
+```
+
+## Start Development Server
+
+```bash
 npm run dev
+```
 
-## Backend Progress
+---
 
-The backend architecture currently includes:
-- modular audit orchestration
-- pricing intelligence services
+# Environment Variables
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+SUPABASE_SERVICE_ROLE_KEY=
+
+OPENROUTER_API_KEY=
+
+RESEND_API_KEY=
+
+NEXT_PUBLIC_APP_URL=
+```
+
+---
+
+# Testing
+
+The project includes:
+- API testing
+- frontend flow testing
+- persistence validation
+- email delivery testing
+- public share route testing
+
+Detailed testing documentation:
+```txt
+TESTS.md
+```
+
+---
+
+# Current Status
+
+## Completed
+- architecture design
+- pricing intelligence layer
 - optimization engine
-- recommendation scoring
-- OpenRouter-based AI summaries
-- Supabase persistence layer
-- public audit retrieval APIs
+- backend APIs
+- OpenRouter integration
+- Supabase persistence
+- frontend dashboard
+- charts & visualizations
+- lead capture
+- public sharing system
+- CI/CD setup
 
-Current API endpoints:
-- POST /api/audit
-- POST /api/summary
-- GET /api/share
+## Planned Improvements
+- stronger overlap detection
+- advanced optimization heuristics
+- recommendation learning systems
+- organization-level analytics
+- caching & scalability improvements
+
+---
+
+# Design Philosophy
+
+The platform prioritizes:
+- deterministic financial analysis
+- trustworthy recommendations
+- modern SaaS UX
+- modular architecture
+- scalable infrastructure
+
+---
+
+# Author
+
+Built by Jayanth Midde as part of a production-style AI infrastructure optimization platform project.
