@@ -8,7 +8,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, Trash2, AlertCircle, CheckCircle } from "lucide-react";
 
 import { auditSchema } from "@/lib/validations/audit-schema";
 
@@ -26,6 +26,7 @@ export default function SpendForm() {
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
 
   const {
     register,
@@ -33,6 +34,7 @@ export default function SpendForm() {
     handleSubmit,
     setValue,
     watch,
+    formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
 
@@ -61,6 +63,7 @@ export default function SpendForm() {
     try {
       setLoading(true);
       setError("");
+      setSuccess(false);
 
       const auditResponse = await fetch(
         "/api/audit",
@@ -106,7 +109,12 @@ export default function SpendForm() {
         })
       );
 
-      router.push("/results");
+      setSuccess(true);
+      
+      // Delay navigation for success feedback
+      setTimeout(() => {
+        router.push("/results");
+      }, 1000);
     } catch (err) {
       console.error(err);
 
@@ -119,19 +127,19 @@ export default function SpendForm() {
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-6 py-24">
-      <div className="rounded-[32px] border border-white/10 bg-white/5 p-8 backdrop-blur-xl md:p-10">
+    <section className="mx-auto max-w-5xl px-6 py-24" data-section="audit-form">
+      <div className="rounded-2xl border border-white/10 bg-linear-to-br from-white/8 to-white/2 p-8 backdrop-blur-xl md:p-12">
         <div>
-          <p className="text-sm font-medium uppercase tracking-widest text-blue-400">
+          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
             AI Spend Audit
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold tracking-tight text-white">
+          <h2 className="mt-6 text-4xl font-bold tracking-tight text-white md:text-5xl">
             Analyze Your AI Stack
           </h2>
 
-          <p className="mt-4 max-w-2xl text-zinc-400">
-            Enter your current AI tooling setup and discover optimization opportunities.
+          <p className="mt-4 max-w-2xl text-lg text-zinc-300">
+            Enter your current AI tooling setup and discover optimization opportunities with precision pricing analysis.
           </p>
         </div>
 
@@ -141,33 +149,38 @@ export default function SpendForm() {
         >
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <label className="mb-3 block text-sm font-medium text-zinc-300">
+              <label className="mb-3 block text-sm font-semibold text-zinc-100">
                 Team Size
               </label>
 
               <input
                 type="number"
+                min="1"
                 {...register("teamSize", {
                   valueAsNumber: true,
                 })}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 px-4 text-white outline-none transition focus:border-blue-500"
+                className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
+                placeholder="Number of team members"
               />
+              {errors.teamSize && (
+                <span className="mt-2 text-sm text-red-400">{errors.teamSize.message}</span>
+              )}
             </div>
 
             <div>
-              <label className="mb-3 block text-sm font-medium text-zinc-300">
+              <label className="mb-3 block text-sm font-semibold text-zinc-100">
                 Primary Use Case
               </label>
 
               <select
                 {...register("primaryUseCase")}
-                className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 px-4 text-white outline-none transition focus:border-blue-500"
+                className="h-12 w-full rounded-xl border border-white/10 bg-black px-4 text-white outline-none transition focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
               >
-                <option value="coding">Coding</option>
-                <option value="writing">Writing</option>
-                <option value="research">Research</option>
-                <option value="data">Data</option>
-                <option value="mixed">Mixed</option>
+                <option value="coding">Coding & Development</option>
+                <option value="writing">Writing & Content</option>
+                <option value="research">Research & Analysis</option>
+                <option value="data">Data & Analytics</option>
+                <option value="mixed">Mixed Usage</option>
               </select>
             </div>
           </div>
@@ -176,12 +189,12 @@ export default function SpendForm() {
             {fields.map((field, index) => (
               <div
                 key={field.id}
-                className="rounded-3xl border border-white/10 bg-black/20 p-6"
+                className="rounded-2xl border border-white/10 bg-linear-to-br from-white/5 to-white/2 p-8 transition-all duration-300 hover:border-white/20 hover:from-white/8"
               >
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-zinc-300">
-                      Tool
+                    <label className="mb-3 block text-sm font-semibold text-zinc-100">
+                      AI Tool
                     </label>
 
                     <ToolSelector
@@ -198,58 +211,64 @@ export default function SpendForm() {
                   </div>
 
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-zinc-300">
-                      Plan
+                    <label className="mb-3 block text-sm font-semibold text-zinc-100">
+                      Plan Type
                     </label>
 
                     <input
                       {...register(
                         `tools.${index}.planId`
                       )}
-                      placeholder="pro / team"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 px-4 text-white outline-none transition focus:border-blue-500"
+                      placeholder="e.g., pro, team"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-zinc-300">
-                      Monthly Spend
+                    <label className="mb-3 block text-sm font-semibold text-zinc-100">
+                      Monthly Cost
                     </label>
 
                     <input
                       type="number"
+                      min="0"
+                      step="0.01"
                       {...register(
                         `tools.${index}.monthlySpend`,
                         {
                           valueAsNumber: true,
                         }
                       )}
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 px-4 text-white outline-none transition focus:border-blue-500"
+                      placeholder="$0.00"
+                      className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
                     />
                   </div>
 
                   <div>
-                    <label className="mb-3 block text-sm font-medium text-zinc-300">
-                      Seats
+                    <label className="mb-3 block text-sm font-semibold text-zinc-100">
+                      Team Seats
                     </label>
 
                     <div className="flex gap-3">
                       <input
                         type="number"
+                        min="1"
                         {...register(
                           `tools.${index}.seats`,
                           {
                             valueAsNumber: true,
                           }
                         )}
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-black/40 px-4 text-white outline-none transition focus:border-blue-500"
+                        placeholder="1"
+                        className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
                       />
 
                       {fields.length > 1 && (
                         <button
                           type="button"
                           onClick={() => remove(index)}
-                          className="flex h-12 w-12 items-center justify-center rounded-2xl border border-red-500/20 bg-red-500/10 text-red-400 transition hover:bg-red-500/20"
+                          className="flex h-12 w-12 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/10 text-red-400 transition duration-300 hover:border-red-500/40 hover:bg-red-500/20 active:scale-95 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                          aria-label="Remove tool"
                         >
                           <Trash2 className="h-5 w-5" />
                         </button>
@@ -271,26 +290,46 @@ export default function SpendForm() {
                 seats: 1,
               })
             }
-            className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-white transition hover:bg-white/10"
+            className="group flex items-center gap-2 rounded-xl border border-white/20 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/30"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="h-5 w-5 transition-transform group-hover:rotate-90" />
             Add Another Tool
           </button>
 
           {error && (
-            <div className="rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-300">
-              {error}
+            <div className="flex items-start gap-3 rounded-xl border border-red-500/30 bg-red-500/10 p-4">
+              <AlertCircle className="h-5 w-5 mt-0.5 shrink-0 text-red-400" />
+              <span className="text-sm text-red-200">{error}</span>
+            </div>
+          )}
+
+          {success && (
+            <div className="flex items-start gap-3 rounded-xl border border-green-500/30 bg-green-500/10 p-4">
+              <CheckCircle className="h-5 w-5 mt-0.5 shrink-0 text-green-400" />
+              <span className="text-sm text-green-200">Audit generated successfully! Redirecting...</span>
             </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-2xl bg-white py-4 text-lg font-semibold text-black transition hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-50"
+            className="group relative w-full rounded-xl bg-linear-to-r from-blue-500 to-blue-600 py-4 text-lg font-semibold text-white transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:shadow-blue-500/20 disabled:from-zinc-600 disabled:to-zinc-700 disabled:cursor-not-allowed disabled:shadow-none active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-black"
           >
-            {loading
-              ? "Analyzing AI Spend..."
-              : "Generate Audit"}
+            <span className="relative flex items-center justify-center">
+              {loading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Analyzing Your Stack...
+                </>
+              ) : (
+                <>
+                  Generate Audit Report
+                </>
+              )}
+            </span>
           </button>
         </form>
       </div>

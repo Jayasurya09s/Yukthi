@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CheckCircle, Mail } from "lucide-react";
 
 interface LeadCaptureFormProps {
   auditId: string;
@@ -54,6 +55,11 @@ export default function LeadCaptureForm({
 
       if (data.success) {
         setSuccess(true);
+        setTimeout(() => {
+          setEmail("");
+          setCompanyName("");
+          setRole("");
+        }, 2000);
       }
     } catch (error) {
       console.error(error);
@@ -64,49 +70,55 @@ export default function LeadCaptureForm({
 
   if (success) {
     return (
-      <div className="rounded-3xl border border-emerald-500/20 bg-emerald-500/10 p-8 text-center">
+      <div className="rounded-2xl border border-green-500/30 bg-gradient-to-br from-green-500/10 to-green-500/5 p-8 text-center">
+        <div className="flex justify-center mb-4">
+          <CheckCircle className="h-12 w-12 text-green-400" />
+        </div>
+
         <h3 className="text-2xl font-bold text-white">
-          Audit Sent Successfully
+          Report Sent Successfully
         </h3>
 
-        <p className="mt-4 text-zinc-300">
-          Your audit report has been saved and
-          emailed successfully.
+        <p className="mt-4 text-green-200">
+          Your audit report has been saved and emailed to <span className="font-semibold">{email}</span>.
+        </p>
+
+        <p className="mt-2 text-sm text-green-200/70">
+          Check your email for the shareable audit report link.
         </p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-xl">
-      <div>
-        <p className="text-sm uppercase tracking-widest text-blue-400">
-          Save Report
+    <div>
+      <div className="mb-8">
+        <p className="text-sm font-semibold uppercase tracking-widest text-blue-400">
+          Save Your Report
         </p>
 
         <h2 className="mt-4 text-3xl font-bold tracking-tight text-white">
-          Get Your Audit Report
+          Get Your Personalized Audit Report
         </h2>
 
-        <p className="mt-4 text-zinc-400">
-          Save your audit report and receive a
-          shareable link via email.
+        <p className="mt-4 text-lg text-zinc-300">
+          Save your audit analysis and receive a shareable link. Access your report anytime from any device.
         </p>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="mt-10 space-y-5"
+        className="space-y-4"
       >
         <input
           type="email"
           required
-          placeholder="Email address"
+          placeholder="your.email@company.com"
           value={email}
           onChange={(e) =>
             setEmail(e.target.value)
           }
-          className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-white outline-none transition focus:border-blue-500"
+          className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
         />
 
         <input
@@ -116,27 +128,40 @@ export default function LeadCaptureForm({
           onChange={(e) =>
             setCompanyName(e.target.value)
           }
-          className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-white outline-none transition focus:border-blue-500"
+          className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
         />
 
         <input
           type="text"
-          placeholder="Role"
+          placeholder="Your role (e.g., CTO, Finance Manager)"
           value={role}
           onChange={(e) =>
             setRole(e.target.value)
           }
-          className="h-12 w-full rounded-2xl border border-white/10 bg-black/30 px-4 text-white outline-none transition focus:border-blue-500"
+          className="h-12 w-full rounded-xl border border-white/10 bg-black/40 px-4 text-white outline-none transition placeholder-zinc-500 focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 hover:border-white/20"
         />
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-2xl bg-white py-4 text-lg font-semibold text-black transition hover:scale-[1.01] disabled:opacity-50"
+          className="group relative w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 py-3.5 text-base font-semibold text-white transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:shadow-blue-500/20 disabled:from-zinc-600 disabled:to-zinc-700 disabled:cursor-not-allowed disabled:shadow-none active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-black"
         >
-          {loading
-            ? "Saving Report..."
-            : "Save & Email Report"}
+          <span className="relative flex items-center justify-center gap-2">
+            {loading ? (
+              <>
+                <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Saving Report...
+              </>
+            ) : (
+              <>
+                <Mail className="h-5 w-5" />
+                Save & Email Report
+              </>
+            )}
+          </span>
         </button>
       </form>
     </div>

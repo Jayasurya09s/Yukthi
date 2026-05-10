@@ -1,52 +1,85 @@
-# Prompt Engineering
+# PROMPTS.md
 
-## Philosophy
+# Prompt Engineering Strategy
+
+## Overview
 
 The platform intentionally limits LLM responsibilities to:
-- summarization
-- readability
-- executive-style communication
 
-LLMs are NOT used for:
-- pricing calculations
-- savings estimation
-- recommendation generation
-- financial decision making
+* executive-style summarization
+* readability improvements
+* recommendation explanation formatting
 
-This architecture prevents hallucinated financial outputs and improves deterministic reliability.
+LLMs are NOT responsible for:
 
----
+* pricing calculations
+* savings estimation
+* recommendation generation
+* financial decision-making
 
-# Why Deterministic Financial Logic Matters
+All financial logic remains deterministic and fully testable.
 
-Financial recommendation systems require:
-- reproducibility
-- numerical correctness
-- consistency
-- auditability
+This architecture was intentionally designed to reduce:
 
-Purely AI-generated financial recommendations can:
-- hallucinate values
-- generate inconsistent outputs
-- reduce user trust
-
-To avoid this:
-- all calculations are deterministic
-- AI only consumes finalized audit outputs
+* hallucinated outputs
+* inconsistent recommendations
+* trust issues
+* non-reproducible audits
 
 ---
 
-# Current LLM Usage
+# Core Architectural Principle
+
+The most important prompt-engineering decision was:
+
+```txt id="u0x9pr"
+AI enhances deterministic systems.
+It does not replace critical financial logic.
+```
+
+The audit engine:
+
+* calculates savings
+* determines recommendations
+* evaluates pricing
+
+The LLM only transforms finalized outputs into:
+
+* concise summaries
+* executive-friendly explanations
+* readable recommendations
+
+---
+
+# Current LLM Provider
 
 ## OpenRouter
 
-The system uses:
-- OpenRouter
-- Claude / GPT-compatible models
+Used for:
 
-Purpose:
-- executive summary generation
-- readable audit explanations
+* summary generation
+* lightweight explanation formatting
+
+Compatible models tested:
+
+* Claude-family models
+* GPT-compatible models
+
+---
+
+# Primary Production Prompt
+
+The following prompt is used inside:
+
+```txt id="0m7kqp"
+lib/ai/prompts.ts
+```
+
+Function:
+
+```txt id="o7j5w4"
+buildAuditSummaryPrompt()
+```
 
 ---
 
@@ -64,17 +97,50 @@ STRICT RULES:
 - Keep response under 100 words.
 - Mention optimization opportunities clearly.
 - Maintain executive-report tone.
+
+Audit Data:
+{...}
 ```
+
+---
+
+# Why This Prompt Structure Was Chosen
+
+The prompt intentionally:
+
+* constrains creativity
+* minimizes hallucinations
+* limits verbosity
+* enforces professional tone
+
+The LLM is treated as:
+
+```txt id="0d7dzk"
+a formatting and summarization layer
+```
+
+—not—
+
+```txt id="1mjlwm"
+a financial reasoning engine
+```
+
+This separation significantly improves:
+
+* consistency
+* reproducibility
+* trustworthiness
 
 ---
 
 # Prompt Inputs
 
 The model receives:
-- deterministic audit outputs
-- recommendation data
-- savings calculations
-- optimization metadata
+
+* deterministic audit outputs
+* finalized recommendation objects
+* exact savings calculations
+* structured optimization metadata
 
 Example payload:
 
@@ -84,94 +150,198 @@ Example payload:
   "totalAnnualSavings": 480,
   "recommendations": [
     {
-      "tool": "cursor",
+      "tool": "Cursor",
       "recommendedPlan": "Pro"
     }
   ]
 }
 ```
 
+The model never receives:
+
+* raw pricing logic
+* pricing calculations
+* optimization heuristics
+* authority to modify savings numbers
+
 ---
 
-# Initial Problems Encountered
+# Early Problems Encountered
 
-## Hallucinated Savings Values
+## 1. Hallucinated Savings Values
 
 During early testing:
-- the model generated incorrect savings estimates
-- summary outputs differed from deterministic audit calculations
+
+* the model occasionally rewrote savings values
+* recommendation wording became inconsistent
+* summaries drifted from deterministic calculations
 
 Example issue:
-- audit engine returned `$40/month`
-- LLM hallucinated `$120/month`
 
-This created:
-- trust issues
-- financial inconsistency
-- unreliable summaries
+```txt id="0l5d1y"
+Audit engine returned:
+$40/month savings
 
----
+LLM summary returned:
+approximately $120/month savings
+```
 
-# Solution
+This immediately reduced:
 
-The following safeguards were added:
-
-## 1. Deterministic Isolation
-AI never calculates financial outputs.
+* trustworthiness
+* audit reliability
+* financial consistency
 
 ---
 
-## 2. Explicit Constraints
-Prompts explicitly prohibit:
-- inventing numbers
-- estimating values
-- changing savings calculations
+# 2. Overly Verbose Summaries
+
+Initial prompts produced:
+
+* marketing-style language
+* unnecessary optimism
+* long multi-paragraph outputs
+
+This conflicted with the intended:
+
+* executive-report tone
+* operational clarity
+* financially grounded positioning
 
 ---
 
-## 3. Structured Inputs
-The LLM only receives finalized deterministic outputs.
+# Safeguards Added
+
+## 1. Explicit Numerical Constraints
+
+The prompt explicitly prohibits:
+
+* inventing values
+* estimating numbers
+* changing savings calculations
 
 ---
 
-## 4. Graceful Fallbacks
-If OpenRouter fails:
-- deterministic audit results still render successfully
-- fallback summaries are returned
+## 2. Deterministic Isolation
+
+All calculations occur BEFORE the LLM step.
+
+The model only receives finalized outputs.
+
+---
+
+## 3. Structured Prompt Inputs
+
+The prompt consumes structured JSON-like payloads instead of unstructured prose.
+
+This reduced:
+
+* ambiguity
+* hallucinations
+* formatting drift
+
+---
+
+## 4. Short Output Constraints
+
+The summary is intentionally limited to:
+
+```txt id="k7x5nq"
+under 100 words
+```
+
+This improves:
+
+* readability
+* consistency
+* executive usability
+
+---
+
+## 5. Graceful Fallbacks
+
+If the LLM provider fails:
+
+* deterministic audit results still render
+* fallback summaries are generated
+* the audit experience remains functional
+
+This prevents:
+
+* broken user flows
+* empty reports
+* dependency lockups
 
 ---
 
 # Prompt Design Goals
 
-The prompts aim to produce:
-- concise executive summaries
-- professional tone
-- trustworthy explanations
-- consistent outputs
-- readable recommendations
+The prompts aim to generate:
+
+* concise executive summaries
+* trustworthy language
+* financially grounded wording
+* readable optimization insights
+* operationally useful recommendations
+
+The prompts intentionally avoid:
+
+* hype-heavy language
+* exaggerated ROI claims
+* aggressive sales tone
+* speculative recommendations
 
 ---
 
 # Future Prompt Improvements
 
 Potential future additions:
-- organization-specific summaries
-- technical vs executive summary modes
-- multilingual summaries
-- optimization-priority scoring explanations
-- adaptive recommendation narratives
+
+* executive vs technical summary modes
+* multilingual summaries
+* organization-specific narratives
+* optimization-priority explanations
+* benchmark-aware summaries
+* confidence-scored recommendation wording
 
 ---
 
-# Architectural Insight
+# Biggest Prompt Engineering Insight
 
-One of the biggest lessons from building this platform was realizing that:
-- AI should enhance deterministic systems
-- not replace critical financial logic
+The most important realization during development was:
 
-The strongest architecture combined:
-- deterministic pricing intelligence
-- structured recommendation systems
-- constrained AI summarization
+```txt id="l1nq5j"
+The value of the product does not come from AI-generated prose.
 
-rather than fully AI-generated analysis.
+It comes from deterministic recommendations
+that users can actually trust.
+```
+
+That insight shaped:
+
+* the architecture
+* the audit-engine boundaries
+* the recommendation system
+* the summary generation flow
+* the overall product positioning
+
+---
+
+# Final Philosophy
+
+The strongest results came from combining:
+
+* deterministic pricing systems
+* rule-based recommendations
+* constrained AI summarization
+
+instead of relying on:
+
+```txt id="2y7nzs"
+fully autonomous AI-generated financial analysis
+```
+
+The platform intentionally treats AI as:
+
+* an enhancement layer
+* not the source of financial truth.

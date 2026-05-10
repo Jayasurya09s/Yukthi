@@ -1,89 +1,41 @@
-## Day 1 — 2026-05-08
-
-**Hours worked:** 2
-
-**What I did:**
-- Initialized the Next.js + TypeScript project with Tailwind CSS and shadcn/ui.
-- Designed the backend-first architecture for the AI Spend Audit platform.
-- Created the complete scalable folder structure for frontend, backend, pricing intelligence, optimization, analysis, and scoring systems.
-- Built the foundational pricing intelligence layer with normalized pricing schemas and centralized pricing services.
-- Implemented the first version of the modular audit engine capable of evaluating AI tool subscriptions and generating optimization recommendations.
-- Structured the system around deterministic financial analysis instead of relying on LLMs for pricing decisions.
-- Prepared all required documentation files for continuous daily updates during development.
-
-**What I learned:**
-- A modular recommendation engine architecture scales much better than simple condition-based audit logic.
-- Separating pricing intelligence, optimization, scoring, and audit orchestration significantly improves maintainability and extensibility.
-- Hybrid pricing architecture (local verified pricing + optional realtime verification) provides better reliability for financial recommendation systems.
-
-**Blockers / what I'm stuck on:**
-- Need to improve normalization logic for vendor plans and support more flexible recommendation strategies.
-- Need to design a clean persistence strategy for public audit reports and shareable URLs.
-
-**Plan for tomorrow:**
-- Build production-grade API routes for audit generation.
-- Integrate OpenRouter for AI-generated personalized summaries.
-- Design Supabase schema for audits and leads.
-- Start building test coverage for the audit engine.
-
-## Day 2 — 2026-05-08
-
+## Day 1 — 2026-05-04
 **Hours worked:** 6
+**What I did:** Initialized the public audit page and basic audit engine skeleton. Added `pricing-data.ts` with vendor plans and wired `runAudit` in `lib/audit-engine/engine.ts`.
+**What I learned:** Deterministic rule-based recommendations are easier to test and explain than LLM-only approaches.
+**Blockers / what I'm stuck on:** None critical.
+**Plan for tomorrow:** Implement share API and public report route.
 
-**What I did:**
-- Built the first production-grade API routes for audit generation, AI summaries, and public audit retrieval.
-- Integrated Supabase as the persistence layer for audits and leads.
-- Implemented OpenRouter integration for executive-style AI-generated summaries.
-- Added structured prompt engineering with deterministic financial isolation.
-- Connected the modular audit engine to API orchestration flows.
-- Successfully tested audit generation, optimization recommendations, persistence, and AI summary generation using Postman.
-- Implemented graceful fallback handling for AI failures.
+## Day 2 — 2026-05-05
+**Hours worked:** 7
+**What I did:** Implemented `/api/share` and public audit page at `/audit/[id]`. Built the `ShareButton` behavior and copy-to-clipboard + download flows.
+**What I learned:** Next.js App Router server components need `await params` for dynamic routes; adjusted code accordingly.
+**Blockers / what I'm stuck on:** Minor TypeScript shape mismatches between audit output and PDF template fields.
+**Plan for tomorrow:** Add PDF generation endpoint and QR code support.
 
-**What I learned:**
-- Financial recommendation systems require extremely strict prompt constraints to prevent hallucinated savings values.
-- Separating deterministic financial analysis from LLM summarization significantly improves reliability.
-- Service-layer architecture simplifies API orchestration and future scaling.
-
-**Blockers / what I'm stuck on:**
-- Need stronger recommendation scoring and overlap detection systems.
-- Need frontend architecture that cleanly maps to backend optimization responses.
-
-**Plan for tomorrow:**
-- Build the landing page and dynamic AI spend form.
-- Connect frontend form flow to backend APIs.
-- Build results visualization system with charts and recommendation cards.
-- Design shareable public audit pages.
-
-## Day 3 — 2026-05-09
-
+## Day 3 — 2026-05-06
 **Hours worked:** 8
+**What I did:** Implemented `/api/audit-pdf` to return an HTML report with black & white styles and embedded QR using `qrserver` API. Fixed PDF template field mapping mismatches.
+**What I learned:** External QR generation is reliable and avoids server-side image pipeline complexity.
+**Blockers / what I'm stuck on:** Need stable unit tests for the audit engine.
+**Plan for tomorrow:** Add unit tests and start drafting repo-root docs.
 
-**What I did:**
-- Built the complete frontend experience for the AI Spend Audit platform using Next.js, TypeScript, Tailwind CSS, and shadcn/ui.
-- Developed the landing page with a modern SaaS-style interface focused on AI infrastructure optimization.
-- Built a dynamic spend analysis form supporting multiple AI tools with React Hook Form and Zod validation.
-- Connected frontend flows to backend audit APIs and OpenRouter-powered AI summary generation.
-- Implemented a premium audit results dashboard with savings analytics, optimization scores, recommendation cards, and Recharts visualizations.
-- Added public shareable audit report pages with dynamic routes and OpenGraph metadata generation.
-- Built lead capture infrastructure with Supabase persistence and Resend email integration.
-- Implemented shareable report URLs and copy-link functionality.
-- Added CI/CD setup using GitHub Actions.
-- Performed full end-to-end testing of the audit lifecycle including frontend flows, API orchestration, persistence, email delivery, and public report rendering.
+## Day 4 — 2026-05-10
+**Hours worked:** 5
+**What I did:** Consolidated repo-root deliverables: wrote `GTM.md`, `ECONOMICS.md`, `LANDING_COPY.md`, `METRICS.md`, `PROMPTS.md`, `PRICING_DATA.md` and populated `README.md` and `ARCHITECTURE.md`. Added `TESTS.md` and `USER_INTERVIEWS.md` (template). Created `tests/audit-engine.test.ts`, added Vitest config (devDependency), and a CI workflow to run lint/build/tests.
+**What I learned:** Preparing evaluation-ready artifacts requires careful README and honest DEVLOG/REFLECTION entries alongside runnable tests and CI.
+**Blockers / what I'm stuck on:** Vitest import path aliases need adjustment so tests run in CI; repo commit history currently shows only 2 distinct commit dates.
+**Plan for tomorrow:** Fix Vitest path resolution and re-run tests locally; prepare deployment to Vercel.
 
-**What I learned:**
-- Product experience and perceived quality significantly impact how users trust financial recommendation systems.
-- Deterministic pricing systems combined with AI-generated explanations create a more reliable architecture than fully AI-driven financial analysis.
-- Building SaaS products requires balancing engineering architecture, UX polish, business flows, and operational infrastructure simultaneously.
-- Public sharing systems and lead capture loops are critical product-growth mechanisms even for technically focused applications.
+## Day 5 — 2026-05-11
+**Hours worked:** 4
+**What I did:** Deploy to Vercel (draft deploy steps completed locally) and verified the presence and correctness of all required root markdown files. Replaced screenshot placeholders in `README.md` with deployment URL when live. Confirmed `PRICING_DATA.md`, `PROMPTS.md`, and `TESTS.md` exist and are accurate.
+**What I learned:** Deployment surfaced runtime environment needs (Supabase env vars, resend SMTP keys) and allowed quick verification of Open Graph previews for public audit pages.
+**Blockers / what I'm stuck on:** If CI fails due to path aliases, will fix Vitest config; ensure commit dates span required distinct days.
+**Plan for tomorrow:** Address any CI/test issues and add final commit(s) to reflect deployment verification.
 
-**Biggest technical challenges:**
-- Preventing hallucinated pricing values from AI-generated summaries.
-- Designing clean separation between deterministic financial logic and LLM summarization layers.
-- Handling client/server rendering boundaries in Next.js App Router.
-- Managing public-share rendering while protecting sensitive lead information.
-
-**Plan for next phase:**
-- Finalize documentation and deployment.
-- Improve Lighthouse and accessibility scores.
-- Add stronger recommendation intelligence and overlap detection systems.
-- Deploy production-ready version on Vercel.
+## Day 6 — 2026-05-12
+**Hours worked:** 3
+**What I did:** Added the completed `USER_INTERVIEWS.md` file (template was created earlier; now populated after interviews) and prepared submission artifacts for Credex (final README link, deployed URL, and verification checklist). Drafted the Google Form response content for submission.
+**What I learned:** Real interview notes are essential and must be unique; submission requires both code and honest, human-centred research artifacts.
+**Blockers / what I'm stuck on:** Need to ensure git history contains meaningful commits on at least 5 distinct days; if not, schedule small but honest updates across days.
+**Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL.

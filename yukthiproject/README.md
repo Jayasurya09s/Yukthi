@@ -1,114 +1,127 @@
 # Yukthi
 
-Yukthi is a full-stack SaaS platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI infrastructure spending across tools like ChatGPT, Claude, Cursor, GitHub Copilot, Gemini, and other AI platforms.
+## AI Infrastructure Spend Audit & Optimization Platform
 
-The platform performs deterministic pricing analysis, identifies inefficient subscriptions, detects optimization opportunities, and generates AI-powered executive summaries with estimated savings recommendations.
+Yukthi is a full-stack SaaS platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI infrastructure spending across tools such as:
+
+* ChatGPT
+* Claude
+* Cursor
+* GitHub Copilot
+* Gemini
+* OpenAI API
+* Anthropic API
+
+The platform performs deterministic pricing analysis, detects inefficient subscriptions, identifies optimization opportunities, and generates concise AI-powered executive summaries.
 
 ---
 
-# Live Product Vision
+# Product Vision
 
-The platform is designed as an AI infrastructure optimization system rather than a simple pricing calculator.
+Modern startups increasingly rely on multiple AI tools simultaneously.
 
-Users can:
-- analyze AI tooling spend
-- identify inefficient pricing plans
-- detect overlapping subscriptions
-- generate optimization recommendations
-- save and share audit reports
-- receive AI-generated executive summaries
+As AI adoption grows:
+
+* subscription overlap increases
+* vendor pricing becomes fragmented
+* API spend becomes harder to track
+* operational inefficiencies compound quietly
+
+Yukthi is designed to function as:
+
+```txt id="p0jv4l"
+a financially trustworthy AI spend optimization system
+```
+
+instead of:
+
+```txt id="6zz7yt"
+a generic AI dashboard
+```
+
+The platform prioritizes:
+
+* deterministic audit logic
+* explainable recommendations
+* trustworthy financial outputs
+* operational clarity
 
 ---
 
 # Core Features
 
-## Yukthi Engine
-- deterministic pricing analysis
-- optimization recommendation engine
-- savings calculation system
-- subscription efficiency analysis
+## Deterministic Audit Engine
 
-## Pricing Intelligence Layer
-- normalized vendor pricing architecture
-- centralized pricing data services
-- structured plan comparison logic
+The audit engine:
 
-## AI Summary System
-- OpenRouter-powered executive summaries
-- deterministic financial isolation
-- hallucination-safe prompt engineering
+* analyzes AI tooling spend
+* detects pricing inefficiencies
+* identifies overlapping subscriptions
+* generates optimization recommendations
+* estimates monthly and annual savings
+
+All financial calculations are deterministic and fully testable.
+
+---
+
+## AI Executive Summaries
+
+OpenRouter-powered summaries provide:
+
+* concise executive-style explanations
+* optimization overviews
+* readable recommendations
+
+LLMs are intentionally NOT responsible for:
+
+* pricing calculations
+* savings estimation
+* financial reasoning
+
+---
 
 ## Public Shareable Reports
-- dynamic public audit URLs
-- OpenGraph metadata
-- social sharing support
+
+Users can:
+
+* generate public audit URLs
+* share optimization reports
+* preview reports with Open Graph metadata
+* distribute findings internally
+
+Sensitive organizational data is excluded from public pages.
+
+---
 
 ## Lead Capture Infrastructure
-- email collection workflow
-- Supabase persistence
-- Resend email integration
+
+Includes:
+
+* email collection workflows
+* Supabase persistence
+* Resend email delivery
+* audit/report associations
+
+---
 
 ## Analytics & Visualization
-- savings dashboards
-- optimization scoring
-- spend comparison charts
-- recommendation cards
 
----
+The frontend includes:
 
-# Tech Stack
-
-## Frontend
-- Next.js 15
-- TypeScript
-- Tailwind CSS
-- shadcn/ui
-- Recharts
-- Framer Motion
-
-## Backend
-- Next.js Route Handlers
-- Modular audit engine architecture
-- Zod validation
-- OpenRouter integration
-
-## Database
-- Supabase
-
-## Email Infrastructure
-- Resend
-
-## Deployment
-- Vercel
-
----
-
-# Architecture Highlights
-
-The system intentionally separates:
-- pricing intelligence
-- recommendation generation
-- deterministic calculations
-- AI summarization
-
-LLMs are NOT used for:
-- pricing calculations
-- savings estimation
-- recommendation generation
-
-This architecture improves:
-- reliability
-- reproducibility
-- financial trustworthiness
+* savings dashboards
+* optimization summaries
+* spend comparison charts
+* recommendation cards
+* audit breakdown views
 
 ---
 
 # Product Flow
 
-```txt
+```txt id="l8k9k7"
 Landing Page
-→ AI Spend Form
-→ Audit Engine
+→ AI Spend Input Form
+→ Deterministic Audit Engine
 → Optimization Analysis
 → AI Summary Generation
 → Results Dashboard
@@ -118,34 +131,121 @@ Landing Page
 
 ---
 
+# Tech Stack
+
+## Frontend
+
+* Next.js 15
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Framer Motion
+* Recharts
+
+---
+
+## Backend
+
+* Next.js Route Handlers
+* Modular audit engine architecture
+* Zod validation
+* OpenRouter integration
+
+---
+
+## Database
+
+* Supabase PostgreSQL
+
+---
+
+## Infrastructure
+
+* Vercel
+* GitHub Actions
+* Resend Email API
+
+---
+
+# Architecture Philosophy
+
+The system intentionally separates:
+
+* pricing intelligence
+* deterministic calculations
+* recommendation generation
+* AI summarization
+
+This architecture improves:
+
+* financial trustworthiness
+* reproducibility
+* maintainability
+* testing reliability
+
+LLMs are treated as:
+
+```txt id="u7q2yt"
+a summarization layer
+```
+
+—not—
+
+```txt id="ah4v9z"
+the source of financial truth
+```
+
+---
+
 # API Endpoints
 
 ## POST `/api/audit`
-Generates AI infrastructure optimization audits.
+
+Runs deterministic AI infrastructure audits and generates optimization recommendations.
+
+---
 
 ## POST `/api/summary`
-Generates executive-style AI summaries.
+
+Generates executive-style AI summaries using finalized audit outputs.
+
+---
 
 ## POST `/api/leads`
-Stores leads and sends audit emails.
+
+Stores leads and triggers audit delivery workflows.
+
+---
 
 ## GET `/api/share?id=`
-Retrieves public audit reports.
+
+Retrieves public audit reports for sharing and preview rendering.
 
 ---
 
 # Local Development
 
-## Install Dependencies
+## 1. Install Dependencies
 
 ```bash
 npm install
 ```
 
-## Start Development Server
+---
+
+## 2. Start Development Server
 
 ```bash
 npm run dev
+```
+
+---
+
+## 3. Production Build
+
+```bash
+npm run build
+npm start
 ```
 
 ---
@@ -171,54 +271,143 @@ NEXT_PUBLIC_APP_URL=
 # Testing
 
 The project includes:
-- API testing
-- frontend flow testing
-- persistence validation
-- email delivery testing
-- public share route testing
 
-Detailed testing documentation:
-```txt
+* audit-engine tests
+* API route testing
+* public share route validation
+* persistence testing
+* email delivery verification
+
+Additional testing documentation:
+
+```txt id="4k5b6x"
 TESTS.md
 ```
+
+---
+
+# Key Engineering Decisions
+
+## 1. Deterministic Logic Over Full AI Automation
+
+Financial calculations remain rule-based to prevent:
+
+* hallucinated savings
+* inconsistent recommendations
+* non-reproducible audits
+
+---
+
+## 2. Lightweight Infrastructure
+
+The stack intentionally prioritizes:
+
+* fast iteration velocity
+* low hosting costs
+* operational simplicity
+* scalable serverless deployment
+
+---
+
+## 3. Shareable Public Reports
+
+Public reports improve:
+
+* virality
+* collaboration
+* product discoverability
+
+while remaining:
+
+* opt-in
+* sanitized
+* privacy-aware
 
 ---
 
 # Current Status
 
 ## Completed
-- architecture design
-- pricing intelligence layer
-- optimization engine
-- backend APIs
-- OpenRouter integration
-- Supabase persistence
-- frontend dashboard
-- charts & visualizations
-- lead capture
-- public sharing system
-- CI/CD setup
+
+* audit engine
+* pricing intelligence layer
+* optimization recommendation system
+* OpenRouter integration
+* Supabase persistence
+* frontend dashboard
+* public sharing infrastructure
+* CI/CD setup
+* documentation system
+
+---
 
 ## Planned Improvements
-- stronger overlap detection
-- advanced optimization heuristics
-- recommendation learning systems
-- organization-level analytics
-- caching & scalability improvements
+
+* deeper overlap detection
+* organization-level analytics
+* recommendation confidence scoring
+* caching infrastructure
+* benchmarking systems
+* advanced optimization heuristics
+
+---
+
+# Deployment
+
+Recommended deployment platform:
+
+```txt id="q4w2ls"
+Vercel
+```
+
+The architecture is optimized for:
+
+* serverless deployment
+* low operational overhead
+* rapid iteration
 
 ---
 
 # Design Philosophy
 
-The platform prioritizes:
-- deterministic financial analysis
-- trustworthy recommendations
-- modern SaaS UX
-- modular architecture
-- scalable infrastructure
+The product experience was inspired by modern B2B SaaS products such as:
+
+* Stripe
+* Linear
+* Ramp
+* Vercel
+
+The interface intentionally prioritizes:
+
+* clarity
+* operational trust
+* readability
+* actionable recommendations
+
+over:
+
+* excessive animations
+* AI hype
+* dashboard complexity
+
+---
+
+# Repository Documentation
+
+Additional repository documentation:
+
+* `ARCHITECTURE.md`
+* `DEVLOG.md`
+* `PROMPTS.md`
+* `PRICING_DATA.md`
+* `METRICS.md`
+* `GTM.md`
+* `ECONOMICS.md`
+* `TESTS.md`
+* `REFLECTION.md`
 
 ---
 
 # Author
 
-Built by Jayanth Midde as part of a production-style AI infrastructure optimization platform project.
+Built by Jayanth Midde as part of a production-oriented AI infrastructure optimization platform project.

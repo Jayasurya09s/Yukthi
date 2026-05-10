@@ -13,20 +13,41 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AI Spend Audit",
+  title: "Yukthi - AI Infrastructure Cost Optimization",
 
   description:
-    "Analyze and optimize AI infrastructure spending across ChatGPT, Claude, Cursor, Copilot, Gemini, and more.",
+    "Analyze and optimize your AI infrastructure spending across ChatGPT, Claude, Cursor, Copilot, Gemini, and more. Discover 20-40% savings with deterministic pricing intelligence.",
+
+  keywords: "AI cost optimization, ChatGPT, Claude, Cursor, pricing analysis, cost reduction",
 
   metadataBase: new URL("http://localhost:3000"),
 
   openGraph: {
-    title: "AI Spend Audit",
+    title: "Yukthi - Stop Overpaying for AI Tools",
 
     description:
-      "AI infrastructure cost optimization platform.",
+      "AI infrastructure cost optimization platform with deterministic pricing analysis.",
 
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yukthi - AI Cost Optimization",
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Yukthi - Stop Overpaying for AI Tools",
+    description: "AI infrastructure cost optimization platform",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -38,9 +59,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-black text-white selection:bg-blue-500/20 selection:text-white">
         {children}
       </body>
     </html>

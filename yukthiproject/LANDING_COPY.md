@@ -1,223 +1,189 @@
-# Landing Page Copy
+# LANDING_COPY.md
 
-## Hero Section
+# Hero Section
 
-### Headline
+## Headline
 
-```txt
+```txt id="ojy4sd"
 Stop Overpaying for AI Tools
 ```
 
 ---
 
-### Subheadline
+## Subheadline
 
-```txt
-Analyze your AI stack, detect unnecessary spending, and discover optimization opportunities across ChatGPT, Claude, Cursor, Copilot, Gemini, and more.
+```txt id="j8d8d4"
+Run a 60-second audit of your AI stack and uncover verified savings opportunities with prioritized recommendations.
 ```
 
 ---
 
-### Primary CTA
+## Primary CTA
 
-```txt
+```txt id="oqk9bw"
 Audit My Stack
 ```
 
 ---
 
-### Secondary CTA
+# Supporting Value Props
 
-```txt
-View Demo Report
+* Identify wasted AI spend in minutes
+* Compare plans across leading AI vendors
+* Get deterministic savings recommendations
+* Share audit reports with your team instantly
+* Built for startups and engineering teams
+
+---
+
+# Social Proof (Mocked)
+
+```txt id="c0z2ci"
+“Used by 120+ early-stage SaaS teams” (mocked)
+```
+
+```txt id="ydy8bd"
+“Average projected savings: $4,200/year” (mocked)
+```
+
+```txt id="2w6s0s"
+“Trusted by operators managing modern AI stacks” (mocked)
 ```
 
 ---
 
 # Product Positioning
 
-Yukthi is positioned as:
-- an AI infrastructure optimization platform
-- a financial intelligence layer for AI tooling
-- a SaaS cost-efficiency system
+The product is intentionally positioned as:
 
-The product intentionally avoids positioning itself as:
-- a chatbot
-- a generic AI assistant
-- a simple subscription calculator
+```txt id="lpyklm"
+a financially trustworthy optimization tool
+```
+
+—not—
+
+```txt id="2g0gfg"
+an AI gimmick or generic dashboard
+```
+
+The messaging emphasizes:
+
+* operational efficiency
+* cost visibility
+* actionable recommendations
+* deterministic audit logic
+
+instead of:
+
+* vague AI automation claims
+* inflated savings promises
+* hype-driven positioning
 
 ---
 
-# Core Messaging Pillars
+# Core Messaging Principles
 
-## 1. Cost Optimization
+The copy intentionally avoids:
 
-Users care about:
-- reducing unnecessary AI spending
-- identifying inefficient subscriptions
-- avoiding enterprise overpayment
+* excessive AI buzzwords
+* unrealistic ROI claims
+* “10x your business” language
+* aggressive sales messaging
 
-Primary messaging:
-```txt
-Find hidden AI infrastructure savings in minutes.
-```
+Instead, the tone aims to feel:
 
----
-
-## 2. Financial Trustworthiness
-
-The platform emphasizes:
-- deterministic calculations
-- reliable recommendations
-- non-hallucinated outputs
-
-Primary messaging:
-```txt
-Deterministic pricing analysis. Not hallucinated recommendations.
-```
+* technically trustworthy
+* operationally mature
+* financially grounded
+* startup-friendly
 
 ---
 
-## 3. Simplicity
+# FAQ
 
-The product flow is intentionally simple:
-```txt
-Enter AI stack
-→ Generate audit
-→ Discover savings
-```
+## 1. How long does an audit take?
 
-Messaging:
-```txt
-No spreadsheets. No manual audits. No pricing confusion.
-```
+The quick audit takes approximately 60 seconds and provides an immediate estimate of potential savings. A deeper audit with more detailed recommendations usually takes under 10 minutes.
 
 ---
 
-## 4. Shareability
+## 2. Are the savings guaranteed?
 
-Public audit reports support:
-- collaboration
-- founder discussions
-- finance review
-- internal tooling decisions
-
-Messaging:
-```txt
-Generate shareable optimization reports for your team.
-```
+No. Savings estimates are deterministic and based on the information provided during the audit. Actual savings depend on vendor contracts, usage patterns, and implementation decisions.
 
 ---
 
-# Features Section Copy
+## 3. Is my data private?
 
-## Pricing Intelligence
-
-```txt
-Analyze AI subscriptions using structured pricing intelligence and optimization logic.
-```
+Yes. Public reports intentionally exclude sensitive company information, and users control what data they choose to share. Production deployments can additionally support private or self-hosted infrastructure integrations.
 
 ---
 
-## Optimization Engine
+## 4. Who should run this audit?
 
-```txt
-Detect inefficient plans, overlapping tools, and unnecessary enterprise subscriptions.
-```
+Typically:
 
----
+* founders
+* Heads of Finance
+* FP&A teams
+* engineering managers
+* operations leaders
 
-## Savings Analytics
-
-```txt
-Visualize monthly and annual savings opportunities across your AI infrastructure stack.
-```
+Anyone responsible for tooling spend or budgeting can benefit from the audit.
 
 ---
 
-## Deterministic Audits
+## 5. What happens after the audit?
 
-```txt
-Financial recommendations are generated through deterministic logic rather than hallucinated AI outputs.
-```
+Each recommendation includes:
 
----
+* estimated savings impact
+* reasoning
+* suggested implementation priority
 
-# Dashboard Messaging
-
-## Savings Cards
-
-### Monthly Savings
-```txt
-Estimated monthly optimization opportunity identified by the audit engine.
-```
-
-### Annual Savings
-```txt
-Projected yearly savings if recommendations are implemented.
-```
-
-### Optimization Score
-```txt
-Estimated AI stack efficiency improvement potential.
-```
-
----
-
-# Lead Capture Messaging
-
-## Save Report Section
-
-### Heading
-
-```txt
-Get Your Audit Report
-```
-
-### Subheading
-
-```txt
-Save your audit report and receive a shareable link via email.
-```
-
----
-
-# Public Share Messaging
-
-## Public Audit Header
-
-```txt
-Public shareable AI infrastructure audit report.
-```
-
----
-
-# Brand Voice
-
-The overall tone of the platform is:
-- professional
-- analytical
-- founder-oriented
-- technically trustworthy
-- financially reliable
-
-The platform intentionally avoids:
-- excessive hype
-- exaggerated AI claims
-- flashy marketing language
+For companies with larger optimization opportunities, Credex can provide additional consultation and infrastructure support.
 
 ---
 
 # Design Inspiration
 
-The product messaging and positioning were inspired by modern B2B SaaS platforms such as:
-- Stripe
-- Linear
-- Vercel
-- Ramp
+The product experience was inspired by modern B2B SaaS products such as:
 
-The goal was to create a product experience that feels:
-- modern
-- trustworthy
-- operationally mature
-- startup-ready
+* Stripe
+* Linear
+* Vercel
+* Ramp
+
+The intended feeling is:
+
+* clean
+* operational
+* trustworthy
+* modern
+* lightweight
+
+The interface intentionally prioritizes:
+
+* clarity over visual noise
+* readability over decoration
+* actionable information over marketing fluff
+
+---
+
+# Core Landing Page Insight
+
+The most important messaging realization during development was:
+
+```txt id="jlwmz3"
+Users do not care about “AI optimization.”
+
+They care about reducing unnecessary spend
+without slowing their teams down.
+```
+
+That insight shaped:
+
+* the headline
+* the audit framing
+* the CTA wording
+* the overall product positioning

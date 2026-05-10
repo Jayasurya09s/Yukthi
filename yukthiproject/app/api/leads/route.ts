@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 import { supabase } from "@/lib/db/supabase";
 
-import { resend } from "@/lib/email/resend";
+import { transporter } from "@/lib/email/mailer";
 
 export async function POST(req: Request) {
   try {
@@ -32,34 +32,36 @@ export async function POST(req: Request) {
 
     const shareUrl = `${process.env.NEXT_PUBLIC_APP_URL}/audit/${auditId}`;
 
-const emailResponse =
-  await resend.emails.send({
-    from:
-      "AI Spend Audit <noreply@yukti.ai>",
+await transporter.sendMail({
+  from: `"Yukthi" <${process.env.EMAIL_USER}>`,
 
-    to: email,
+  to: email,
 
-    subject:
-      "Your AI Spend Audit Report",
+  subject: "Your Yukthi AI Audit Report",
 
-    html: `
-      <h1>Your AI Spend Audit is Ready</h1>
+  html: `
+    <div style="font-family: Arial, sans-serif; padding: 24px;">
+      <h1>Your Yukthi Audit Report is Ready</h1>
 
       <p>
-        We analyzed your AI infrastructure spending and generated your optimization report.
+        We analyzed your AI infrastructure stack and identified optimization opportunities.
       </p>
 
       <p>
-        View your audit:
+        View your public audit report:
       </p>
 
       <a href="${shareUrl}">
         ${shareUrl}
       </a>
-    `,
-  });
 
-console.log(emailResponse);
+      <p style="margin-top: 24px;">
+        — Team Yukthi
+      </p>
+    </div>
+  `,
+});
+
     
     return NextResponse.json({
       success: true,

@@ -1,3 +1,23 @@
+Tests — what I added and how to run them
+
+Files added
+- `tests/audit-engine.test.ts` — unit tests for `runAudit` covering plan optimization, no-op cases, and confidence scoring.
+
+How to run
+1. Install dev deps:
+
+```bash
+npm install
+```
+
+2. Run tests:
+
+```bash
+npm run test
+```
+
+Notes
+- The test suite uses `vitest`. Tests are small, deterministic, and validate the most important audit logic paths. Add more cases as the pricing dataset expands.
 # Testing Documentation
 
 ## Testing Strategy
