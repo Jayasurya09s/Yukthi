@@ -6,6 +6,27 @@ import SavingsChart from "@/components/charts/savings-chart";
 
 import AuditSummary from "@/components/audit/audit-summary";
 import ShareButton from "@/components/audit/share-button";
+import Link from "next/link";
+
+type AuditRecommendation = {
+  tool: string;
+  currentPlan: string;
+  recommendedPlan: string;
+  monthlySavings: number;
+  annualSavings: number;
+  confidence: number;
+  reason: string;
+};
+
+type AuditRecord = {
+  id: string;
+  team_size: number;
+  total_monthly_spend: number;
+  total_monthly_savings: number;
+  total_annual_savings: number;
+  summary?: string | null;
+  recommendations?: AuditRecommendation[] | null;
+};
 
 interface AuditPageProps {
   params: {
@@ -29,7 +50,7 @@ async function getAudit(id: string) {
 
     return {
       success: true,
-      audit: data,
+      audit: data as AuditRecord,
     };
   } catch (error) {
     console.error("Error fetching audit:", error);
@@ -80,7 +101,7 @@ export default async function AuditPage({
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Audit Report Not Found</h1>
           <p className="text-zinc-400">
-            The audit report you're looking for doesn't exist or has been removed.
+            The audit report you&apos;re looking for doesn&apos;t exist or has been removed.
           </p>
         </div>
       </main>
@@ -172,7 +193,7 @@ export default async function AuditPage({
         <div className="space-y-6 pb-20">
           {audit.recommendations && Array.isArray(audit.recommendations) && audit.recommendations.length > 0 ? (
             audit.recommendations.map(
-              (recommendation: any, index: number) => (
+              (recommendation: AuditRecommendation, index: number) => (
                 <RecommendationCard
                   key={index}
                   tool={recommendation.tool}
@@ -197,9 +218,9 @@ export default async function AuditPage({
         <div className="border-t border-white/10 pt-12 pb-12 mt-12">
           <p className="text-sm text-zinc-400 text-center">
             This is a shared audit report. To run your own audit, visit{" "}
-            <a href="/" className="text-blue-400 hover:text-blue-300 transition">
+            <Link href="/" className="text-blue-400 hover:text-blue-300 transition">
               Yukthi
-            </a>
+            </Link>
           </p>
         </div>
       </section>

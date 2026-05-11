@@ -1,5 +1,5 @@
 export function buildAuditSummaryPrompt(
-  auditData: any
+  auditData: Record<string, unknown>
 ) {
   return `
 You are an AI infrastructure cost optimization analyst.

@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowRight, Sparkles, TrendingDown } from "lucide-react";
-import Link from "next/link";
 
 export default function Hero() {
   const scrollToForm = () => {

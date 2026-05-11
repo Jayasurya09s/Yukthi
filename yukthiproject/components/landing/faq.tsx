@@ -46,7 +46,7 @@ export default function FAQ() {
         </h2>
 
         <p className="mt-4 text-lg text-zinc-400">
-          Everything you need to know about Yukthi's AI cost optimization platform.
+          Everything you need to know about Yukthi&apos;s AI cost optimization platform.
         </p>
       </div>
 

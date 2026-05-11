@@ -1,6 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/db/supabase";
 
+export const runtime = "nodejs";
+
+type AuditRecommendation = {
+  title?: string;
+  tool?: string;
+  description?: string;
+  reason?: string;
+  monthlySavings?: number;
+  monthly_savings?: number;
+  confidence?: number;
+  confidence_score?: number;
+};
+
+type AuditRecord = {
+  current_monthly_spend?: number | null;
+  total_monthly_spend?: number | null;
+  total_monthly_savings?: number | null;
+  total_annual_savings?: number | null;
+  recommendations?: AuditRecommendation[] | null;
+};
+
 export async function GET(request: NextRequest) {
   try {
     const id = request.nextUrl.searchParams.get("id");
@@ -13,11 +34,13 @@ export async function GET(request: NextRequest) {
     }
 
     // Fetch audit from database
-    const { data: audit, error } = await supabase
+    const { data: auditData, error } = await supabase
       .from("audits")
       .select("*")
       .eq("id", id)
       .single();
+
+    const audit = auditData as AuditRecord | null;
 
     if (error || !audit) {
       return NextResponse.json(
@@ -232,7 +255,7 @@ export async function GET(request: NextRequest) {
                   ? audit.recommendations
                       .slice(0, 5)
                       .map(
-                        (rec: any) => `
+                        (rec: AuditRecommendation) => `
                 <div class="recommendation-item">
                   <div class="rec-title">${rec.title || rec.tool || 'Optimization'}</div>
                   <p style="font-size: 12px; color: #666; margin-bottom: 5px;">${

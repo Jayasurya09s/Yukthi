@@ -1,0 +1,14 @@
+{
+  "name": "yukthi-monorepo",
+  "private": true,
+  "workspaces": [
+    "yukthiproject"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace yukthiproject",
+    "build": "npm run build --workspace yukthiproject",
+    "start": "npm run start --workspace yukthiproject",
+    "lint": "npm run lint --workspace yukthiproject",
+    "test": "npm run test --workspace yukthiproject"
+  }
+}

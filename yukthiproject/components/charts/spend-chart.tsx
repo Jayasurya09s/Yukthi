@@ -27,7 +27,12 @@ const COLORS = [
   "#14b8a6",
 ];
 
-const CustomTooltip = ({ active, payload }: any) => {
+type TooltipProps = {
+  active?: boolean;
+  payload?: Array<{ value: number; name: string }>;
+};
+
+const CustomTooltip = ({ active, payload }: TooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-white/20 bg-black/90 p-3 backdrop-blur-xl">

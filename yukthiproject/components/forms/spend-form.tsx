@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/incompatible-library */
 "use client";
 
 import { useState } from "react";
@@ -201,10 +202,10 @@ export default function SpendForm() {
                       value={watch(
                         `tools.${index}.vendor`
                       )}
-                      onChange={(value) =>
+                      onChange={(value: string) =>
                         setValue(
                           `tools.${index}.vendor`,
-                          value as any
+                          value
                         )
                       }
                     />
@@ -336,3 +337,4 @@ export default function SpendForm() {
     </section>
   );
 }
+

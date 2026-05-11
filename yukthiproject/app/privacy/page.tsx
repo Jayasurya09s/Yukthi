@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-white">1. Introduction</h2>
             <p>
-              At Yukthi ("we," "our," or "us"), we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+              At Yukthi (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
             </p>
           </section>
 
@@ -84,7 +84,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-2xl font-bold text-white">7. Changes to This Policy</h2>
             <p>
-              We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on this page and updating the "Last updated" date.
+              We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on this page and updating the &quot;Last updated&quot; date.
             </p>
           </section>
 

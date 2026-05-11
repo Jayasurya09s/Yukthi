@@ -8,7 +8,6 @@ import {
   XAxis,
   YAxis,
   Bar,
-  Legend,
   Cell,
 } from "recharts";
 
@@ -22,7 +21,12 @@ const COLORS = {
   optimized: "#22c55e",
 };
 
-const CustomTooltip = ({ active, payload }: any) => {
+type TooltipProps = {
+  active?: boolean;
+  payload?: Array<{ value: number; payload: { name: string } }>;
+};
+
+const CustomTooltip = ({ active, payload }: TooltipProps) => {
   if (active && payload && payload.length) {
     return (
       <div className="rounded-lg border border-white/20 bg-black/90 p-3 backdrop-blur-xl">

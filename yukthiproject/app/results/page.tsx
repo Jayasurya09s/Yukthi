@@ -16,26 +16,63 @@ import SavingsChart from "@/components/charts/savings-chart";
 import AuditSummary from "@/components/audit/audit-summary";
 import LeadCaptureForm from "@/components/forms/lead-capture-form";
 
+type AuditRecommendation = {
+  tool: string;
+  currentPlan: string;
+  recommendedPlan: string;
+  monthlySavings: number;
+  annualSavings: number;
+  confidence: number;
+  reason: string;
+};
+
+type StoredAuditData = {
+  audit: {
+    id: string;
+    team_size: number;
+  };
+  result: {
+    totalMonthlySpend: number;
+    totalMonthlySavings: number;
+    totalAnnualSavings: number;
+    recommendations: AuditRecommendation[];
+  };
+  summary: string;
+};
+
 export default function ResultsPage() {
   const router = useRouter();
 
-  const [data, setData] = useState<any>(null);
+  const [data] = useState<StoredAuditData | null>(() => {
+    if (typeof window === "undefined") {
+      return null;
+    }
+
+    const stored = localStorage.getItem("audit-result");
+
+    if (!stored) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(stored) as StoredAuditData;
+    } catch {
+      return null;
+    }
+  });
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(
-      "audit-result"
-    );
-
-    if (!stored) {
+    if (!data) {
       router.push("/");
+    }
+  }, [data, router]);
+
+  const handleShare = async () => {
+    if (!data) {
       return;
     }
 
-    setData(JSON.parse(stored));
-  }, [router]);
-
-  const handleShare = async () => {
     const shareUrl = `${window.location.origin}/api/share?id=${data.audit.id}`;
     await navigator.clipboard.writeText(shareUrl);
     setCopied(true);
@@ -175,7 +212,7 @@ export default function ResultsPage() {
         {/* Recommendations List */}
         <div className="space-y-6">
           {result.recommendations.map(
-            (recommendation: any, index: number) => (
+            (recommendation: AuditRecommendation, index: number) => (
               <RecommendationCard
                 key={index}
                 tool={recommendation.tool}

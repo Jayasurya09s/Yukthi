@@ -78,7 +78,7 @@ export default function ContactPage() {
             Get in Touch
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-zinc-300">
-            Have questions about our AI spend optimization platform? We'd love to hear from you. Reach out and we'll respond as soon as possible.
+            Have questions about our AI spend optimization platform? We&apos;d love to hear from you. Reach out and we&apos;ll respond as soon as possible.
           </p>
         </div>
 
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   <h3 className="font-semibold text-white">Email</h3>
                   <p className="mt-2 text-sm text-zinc-400">support@yukthi.ai</p>
                   <p className="text-xs text-zinc-500">
-                    We'll get back to you within 24 hours
+                    We&apos;ll get back to you within 24 hours
                   </p>
                 </div>
               </div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
 
                 {submitted && (
                   <div className="rounded-lg border border-green-500/30 bg-green-500/10 p-4 text-center text-sm text-green-400">
-                    ✓ Thank you for reaching out! We'll get back to you soon.
+                    ✓ Thank you for reaching out! We&apos;ll get back to you soon.
                   </div>
                 )}
               </div>

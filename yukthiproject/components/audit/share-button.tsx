@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Share2, Check, Download } from "lucide-react";
 
 interface ShareButtonProps {
@@ -9,23 +9,13 @@ interface ShareButtonProps {
 
 export default function ShareButton({ auditId }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
-  const [id, setId] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Get ID from URL if not provided as prop
-    if (!auditId && typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlId = params.get('id');
-      if (urlId) setId(urlId);
-      // Or extract from pathname like /api/share?id=xxx
-      const pathId = window.location.pathname.split('/').pop();
-      if (pathId) setId(pathId);
-    } else {
-      setId(auditId || null);
-    }
-  }, [auditId]);
+  const id = auditId || (typeof window !== 'undefined' 
+    ? (new URLSearchParams(window.location.search).get('id') || 
+       window.location.pathname.split('/').pop())
+    : null);
 
-  const shareUrl = typeof window !== 'undefined' 
+  const shareUrl = id
     ? `${window.location.origin}/api/share?id=${id}`
     : '';
 
