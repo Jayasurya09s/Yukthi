@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
   keywords: "AI cost optimization, ChatGPT, Claude, Cursor, pricing analysis, cost reduction",
 
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
 
   openGraph: {
     title: "Yukthi - Stop Overpaying for AI Tools",

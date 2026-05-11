@@ -2,6 +2,8 @@
 
 ## AI Infrastructure Spend Audit & Optimization Platform
 
+**Live:** https://yukthi-one.vercel.app/
+
 Yukthi is a full-stack SaaS platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI infrastructure spending across tools such as:
 
 * ChatGPT
@@ -13,6 +15,52 @@ Yukthi is a full-stack SaaS platform that helps startups and engineering teams a
 * Anthropic API
 
 The platform performs deterministic pricing analysis, detects inefficient subscriptions, identifies optimization opportunities, and generates concise AI-powered executive summaries.
+
+---
+
+# Product Vision
+# Deployment & Configuration
+
+## Dynamic URL Handling
+
+The application uses environment variables for dynamic URL configuration:
+
+### Development
+```bash
+npm run dev
+# Uses: http://localhost:3000 (from .env.local)
+```
+
+### Production
+```
+Vercel deployment
+# Uses: https://yukthi-one.vercel.app (from .env.production + Vercel Dashboard)
+```
+
+All internal links, shareable audit URLs, QR codes, and API endpoints automatically adapt to the deployment environment.
+
+## Environment Variables
+
+Required environment variables (set in `.env.local` for dev, Vercel Dashboard for production):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://ktmvrllntfxccaegzdir.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<your-anon-key>
+SUPABASE_SERVICE_ROLE_KEY=<your-service-role-key>
+OPENROUTER_API_KEY=<your-api-key>
+EMAIL_USER=<your-email>
+EMAIL_PASS=<your-app-password>
+NEXT_PUBLIC_APP_URL=http://localhost:3000  # For dev (production: https://yukthi-one.vercel.app)
+```
+
+## Testing Links
+
+After deployment, these URLs are available:
+- **Homepage:** https://yukthi-one.vercel.app/
+- **Contact:** https://yukthi-one.vercel.app/contact
+- **Privacy:** https://yukthi-one.vercel.app/privacy
+- **Terms:** https://yukthi-one.vercel.app/terms
+- **Shared Audits:** https://yukthi-one.vercel.app/api/share?id=<audit-id>
 
 ---
 

@@ -26,16 +26,18 @@
 **Blockers / what I'm stuck on:** Vitest import path aliases need adjustment so tests run in CI; repo commit history currently shows only 2 distinct commit dates.
 **Plan for tomorrow:** Fix Vitest path resolution and re-run tests locally; prepare deployment to Vercel.
 
-## Day 5 — 2026-05-11
-**Hours worked:** 4
-**What I did:** Deploy to Vercel (draft deploy steps completed locally) and verified the presence and correctness of all required root markdown files. Replaced screenshot placeholders in `README.md` with deployment URL when live. Confirmed `PRICING_DATA.md`, `PROMPTS.md`, and `TESTS.md` exist and are accurate.
-**What I learned:** Deployment surfaced runtime environment needs (Supabase env vars, resend SMTP keys) and allowed quick verification of Open Graph previews for public audit pages.
-**Blockers / what I'm stuck on:** If CI fails due to path aliases, will fix Vitest config; ensure commit dates span required distinct days.
-**Plan for tomorrow:** Address any CI/test issues and add final commit(s) to reflect deployment verification.
 
-## Day 6 — 2026-05-12
+
+## Day 5 — 2026-05-11 (Continued)
+**Hours worked:** 2
+**What I did:** Implemented dynamic URL configuration for production and development environments. Updated `app/layout.tsx` to use `NEXT_PUBLIC_APP_URL` environment variable instead of hardcoded localhost. Created `.env.production` file with production URL. Enhanced `vercel.json` with proper build configuration and route handling. Updated `env.example` documentation.
+**What I learned:** Dynamic environment configuration is essential for seamless dev→prod transitions. Next.js environment variables properly handle fallbacks and environment-specific configs.
+**Blockers / what I'm stuck on:** None. All changes integrated smoothly with existing build and lint infrastructure.
+**Plan for next:** Verify production deployment with all environment variables set in Vercel dashboard. Monitor for any routing or API issues.
+
+<!-- ## Day 6 — 2026-05-12
 **Hours worked:** 3
 **What I did:** Added the completed `USER_INTERVIEWS.md` file (template was created earlier; now populated after interviews) and prepared submission artifacts for Credex (final README link, deployed URL, and verification checklist). Drafted the Google Form response content for submission.
 **What I learned:** Real interview notes are essential and must be unique; submission requires both code and honest, human-centred research artifacts.
 **Blockers / what I'm stuck on:** Need to ensure git history contains meaningful commits on at least 5 distinct days; if not, schedule small but honest updates across days.
-**Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL.
+**Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL. -->
