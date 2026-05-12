@@ -32,7 +32,13 @@ export async function POST(req: Request) {
       throw error;
     }
 
-    const shareUrl = `${process.env.NEXT_PUBLIC_APP_URL}/audit/${auditId}`;
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL && process.env.NEXT_PUBLIC_APP_URL !== 'http://localhost:3000' 
+      ? process.env.NEXT_PUBLIC_APP_URL 
+      : process.env.VERCEL_URL 
+        ? `https://${process.env.VERCEL_URL}` 
+        : 'http://localhost:3000';
+        
+    const shareUrl = `${baseUrl}/audit/${auditId}`;
 
 await transporter.sendMail({
   from: `"Yukthi" <${process.env.EMAIL_USER}>`,

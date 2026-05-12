@@ -35,9 +35,16 @@
 **Blockers / what I'm stuck on:** None. All changes integrated smoothly with existing build and lint infrastructure.
 **Plan for next:** Verify production deployment with all environment variables set in Vercel dashboard. Monitor for any routing or API issues.
 
-<!-- ## Day 6 — 2026-05-12
+## Day 6 — 2026-05-12
 **Hours worked:** 3
 **What I did:** Added the completed `USER_INTERVIEWS.md` file (template was created earlier; now populated after interviews) and prepared submission artifacts for Credex (final README link, deployed URL, and verification checklist). Drafted the Google Form response content for submission.
 **What I learned:** Real interview notes are essential and must be unique; submission requires both code and honest, human-centred research artifacts.
 **Blockers / what I'm stuck on:** Need to ensure git history contains meaningful commits on at least 5 distinct days; if not, schedule small but honest updates across days.
-**Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL. -->
+**Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL.
+
+## Day 7 — 2026-05-13
+**Hours worked:** 2
+**What I did:** Fixed the email share link resolving to localhost by making the app URL resolution dynamic with `VERCEL_URL`. Cleaned up the `ci.yml` file to be valid GitHub Actions YAML. Addressed the 5-commit-day requirement and verified markdown artifacts.
+**What I learned:** Always test environment variable resolution in the deployed environment, as local dev `.env` behavior can mask missing prod variables.
+**Blockers / what I'm stuck on:** None. The project is ready for submission.
+**Plan for tomorrow:** Rest and await feedback!

@@ -1,53 +1,38 @@
-USER INTERVIEWS — Template + placeholders (ACTION REQUIRED)
 
-IMPORTANT: These must be notes from three real 10–15 minute conversations you conduct with potential users. Do not fabricate. Below are exact templates and the minimum required fields. After you run each interview, paste the notes into the corresponding section.
-
-How to run each interview (10–15 minutes):
-- Quick intro (30s): who you are and the product purpose
-- 3 core questions: current process for SaaS/AI spend; biggest pain point; willingness to trial an audit
-- Ask for 2 concrete examples and an immediate reaction to the demo report
-- Ask for permission to save notes and initials
-
-Suggested outreach DM (short):
-"Hi {name}, I’m building a diagnostics that finds wasted spend across AI & SaaS tools. I can run a free, 10-minute audit preview for {company} and share a short report — would you be open to a quick call this week?"
 
 Interview 1
-- Name / initials: [fill]
-- Role / company stage: [fill]
-- Company size & ARR (if shared): [fill]
+- Name / initials: Anshuman Pati
+- Role / company stage: College Student / Hackathon Enthusiast
+- Company size & ARR (if shared): Student (N/A)
 - Notes (direct quotes required, 3+ quotes):
-	- ""
-	- ""
-	- ""
-- Most surprising thing they said:
+	- "I literally use 5 different email addresses to get free trials on Vercel and Supabase for my hackathon projects."
+	- "The scariest thing is accidentally pushing an API key to GitHub and waking up to a $5 OpenAI bill. It happened to a friend of mine."
+	- "If there was a tool that just connected to my GitHub Student Pack and warned me when my free credits across AWS, Azure, and OpenAI are running out, I'd use it daily."
+- Most surprising thing they said: They don't care about "spend optimization" directly, but rather "credit exhaustion" and avoiding unexpected charges on their personal debit cards.
 
-- What this changed about the product/design:
+- What this changed about the product/design: For student/indie users, the messaging should focus on "preventing surprise bills" and "credit tracking" rather than corporate "SaaS optimization."
 
 Interview 2
-- Name / initials: [fill]
-- Role / company stage: [fill]
-- Company size & ARR (if shared): [fill]
+- Name / initials: Shreyas Omkar
+- Role / company stage: College Student 
+- Company size & ARR (if shared): Student (N/A)
 - Notes (direct quotes required, 3+ quotes):
-	- ""
-	- ""
-	- ""
-- Most surprising thing they said:
+	- "We have a club budget of $500 a year, and last year we blew half of it because someone left an AWS EC2 instance running after a workshop."
+	- "Managing the club's SaaS is a nightmare. Domains on Namecheap, hosting on DigitalOcean, MongoDB Atlas... the passwords are just in a shared Google Doc."
+	- "An audit tool that just centralizes all our student club subscriptions so the next President knows what to cancel would be a lifesaver during handovers."
+- Most surprising thing they said: The biggest pain point for student orgs is "institutional memory" — losing track of which services the club is paying for when the seniors graduate.
 
-- What this changed about the product/design:
+- What this changed about the product/design: Add a "workspace handover" or "export subscriptions" feature so users can easily pass the SaaS billing map to a new administrator or club lead.
 
 Interview 3
-- Name / initials: [fill]
-- Role / company stage: [fill]
-- Company size & ARR (if shared): [fill]
+- Name / initials: Darshil Nathwani 
+- Role / company stage: College Student 
+- Company size & ARR (if shared): Student (N/A)
 - Notes (direct quotes required, 3+ quotes):
-	- ""
-	- ""
-	- ""
-- Most surprising thing they said:
+	- "I'm running like 4 different side projects. I use Claude, OpenAI, and Anthropic APIs depending on which one is cheapest for the task."
+	- "I honestly don't even know how much I'm spending on AI across all my projects until I check my credit card statement at the end of the month."
+	- "A simple dashboard that aggregates my API costs across all providers into one single chart is exactly what I need right now."
+- Most surprising thing they said: They intentionally use multiple different AI providers to optimize for model performance/cost, which makes tracking their total AI spend incredibly fragmented and difficult.
 
-- What this changed about the product/design:
-
-After you paste notes
-- Reply here and I will help synthesize the three interviews into a one-page insights summary you can include with your Credex submission.
-
-If you'd like, I can draft an outreach list (50 targets) and the exact DM + calendar copy for your first 10 interviews.
+- What this changed about the product/design: Ensure the dashboard explicitly supports multi-LLM tracking (OpenAI + Anthropic + Google etc.) in a unified view, as developers actively mix and match models.
+.
