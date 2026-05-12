@@ -20,7 +20,7 @@ export default function Hero() {
       <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center px-6 text-center">
         {/* Badge */}
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-200 backdrop-blur-sm transition hover:border-blue-400/50 hover:bg-blue-500/15">
-          <Sparkles className="h-4 w-4 text-blue-300" />
+          
           AI Infrastructure Cost Intelligence
         </div>
 

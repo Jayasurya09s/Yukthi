@@ -15,12 +15,9 @@ The application uses dynamic URL configuration to work seamlessly across develop
 - **Command:** `npm run dev`
 
 ### Production (Vercel)
-- **URL:** https://yukthi-one.vercel.app
+ **URL:** https://yukthi001.vercel.app
 - **Config:** `.env.production` + Vercel Environment Variables
-
-### How It Works
-The app automatically selects the correct environment based on where it's running:
-- Uses `NEXT_PUBLIC_APP_URL` environment variable
+ NEXT_PUBLIC_APP_URL (https://yukthi001.vercel.app)
 - Falls back to `http://localhost:3000` if not set
 - All internal links, shares, and QR codes use the correct domain
 
@@ -40,5 +37,5 @@ SUPABASE_SERVICE_ROLE_KEY
 OPENROUTER_API_KEY
 EMAIL_USER
 EMAIL_PASS
-NEXT_PUBLIC_APP_URL (https://yukthi-one.vercel.app)
+NEXT_PUBLIC_APP_URL (https://yukthi001.vercel.app)
 ```

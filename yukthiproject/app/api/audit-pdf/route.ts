@@ -1,22 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/db/supabase";
+import { getAppUrl } from "../../../lib/utils/app-url";
 
 export const runtime = "nodejs";
-
-function getAppUrl() {
-  if (process.env.NODE_ENV !== "production") {
-    return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  }
-
-  return (
-    process.env.NEXT_PUBLIC_APP_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000")
-  );
-}
 
 type AuditRecommendation = {
   title?: string;

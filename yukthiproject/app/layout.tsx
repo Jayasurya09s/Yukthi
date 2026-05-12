@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getAppUrl } from "../lib/utils/app-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,21 +12,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-function getAppUrl() {
-  if (process.env.NODE_ENV !== "production") {
-    return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  }
-
-  return (
-    process.env.NEXT_PUBLIC_APP_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000")
-  );
-}
 
 export const metadata: Metadata = {
   title: "Yukthi - AI Infrastructure Cost Optimization",
