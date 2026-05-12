@@ -3,7 +3,7 @@ Yukthi Analytics - A website that tells startups whether they are wasting money 
 
 ## 🚀 Live Deployment
 
-**Production URL:** https://yukthi-one.vercel.app/
+**Production URL:** 
 
 ## 📋 Environment Configuration
 
