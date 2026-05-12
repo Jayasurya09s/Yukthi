@@ -42,9 +42,4 @@
 **Blockers / what I'm stuck on:** Need to ensure git history contains meaningful commits on at least 5 distinct days; if not, schedule small but honest updates across days.
 **Plan for tomorrow:** Double-check CI green on `main`, finalize any remaining doc edits, and submit the Google Form with repo and deployed URL.
 
-## Day 7 — 2026-05-13
-**Hours worked:** 2
-**What I did:** Fixed the email share link resolving to localhost by making the app URL resolution dynamic with `VERCEL_URL`. Cleaned up the `ci.yml` file to be valid GitHub Actions YAML. Addressed the 5-commit-day requirement and verified markdown artifacts.
-**What I learned:** Always test environment variable resolution in the deployed environment, as local dev `.env` behavior can mask missing prod variables.
-**Blockers / what I'm stuck on:** None. The project is ready for submission.
-**Plan for tomorrow:** Rest and await feedback!
+

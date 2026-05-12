@@ -31,13 +31,13 @@ describe('Audit Engine', () => {
   it('identifies savings when a cheaper plan is available', async () => {
     vi.mocked(pricingService.getPlanPricing).mockReturnValue({ id: 'business', name: 'Business', monthlyPrice: 40 } as any);
     vi.mocked(optimizer.suggestBetterPlan).mockReturnValue({ id: 'pro', name: 'Pro', monthlyPrice: 20 } as any);
-    
+
     const result = await runAudit({
       teamSize: 2,
       primaryUseCase: 'coding',
       tools: [{ vendor: 'cursor', planId: 'business', monthlySpend: 80, seats: 2 }]
     } as any);
-    
+
     expect(result.totalMonthlySavings).toBe(40); // (40 - 20) * 2
     expect(result.totalAnnualSavings).toBe(480);
     expect(result.recommendations).toHaveLength(1);
@@ -47,13 +47,13 @@ describe('Audit Engine', () => {
   it('marks as optimized when no savings are found', async () => {
     vi.mocked(pricingService.getPlanPricing).mockReturnValue({ id: 'pro', name: 'Pro', monthlyPrice: 20 } as any);
     vi.mocked(optimizer.suggestBetterPlan).mockReturnValue({ id: 'pro', name: 'Pro', monthlyPrice: 20 } as any);
-    
+
     const result = await runAudit({
       teamSize: 2,
       primaryUseCase: 'coding',
       tools: [{ vendor: 'cursor', planId: 'pro', monthlySpend: 40, seats: 2 }]
     } as any);
-    
+
     expect(result.optimized).toBe(true);
     expect(result.totalMonthlySavings).toBe(0);
   });

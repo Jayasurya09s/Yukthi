@@ -32,11 +32,19 @@ export async function POST(req: Request) {
       throw error;
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL && process.env.NEXT_PUBLIC_APP_URL !== 'http://localhost:3000' 
-      ? process.env.NEXT_PUBLIC_APP_URL 
-      : process.env.VERCEL_URL 
-        ? `https://${process.env.VERCEL_URL}` 
-        : 'http://localhost:3000';
+    let baseUrl = 'http://localhost:3000';
+    
+    if (process.env.NODE_ENV === 'production') {
+      baseUrl = process.env.NEXT_PUBLIC_APP_URL && !process.env.NEXT_PUBLIC_APP_URL.includes('localhost')
+        ? process.env.NEXT_PUBLIC_APP_URL 
+        : process.env.VERCEL_PROJECT_PRODUCTION_URL
+          ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+          : process.env.VERCEL_URL 
+            ? `https://${process.env.VERCEL_URL}` 
+            : 'https://yukthi-one.vercel.app';
+    } else {
+      baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    }
         
     const shareUrl = `${baseUrl}/audit/${auditId}`;
 
