@@ -3,6 +3,21 @@ import { supabase } from "@/lib/db/supabase";
 
 export const runtime = "nodejs";
 
+function getAppUrl() {
+  if (process.env.NODE_ENV !== "production") {
+    return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  }
+
+  return (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000")
+  );
+}
+
 type AuditRecommendation = {
   title?: string;
   tool?: string;
@@ -66,7 +81,7 @@ export async function GET(request: NextRequest) {
     );
 
     // Generate QR code using external API
-    const shareLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/share?id=${id}`;
+    const shareLink = `${getAppUrl()}/api/share?id=${id}`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&format=png&data=${encodeURIComponent(shareLink)}`;
 
     // Create HTML content for PDF

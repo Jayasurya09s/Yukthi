@@ -12,6 +12,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+function getAppUrl() {
+  if (process.env.NODE_ENV !== "production") {
+    return process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+  }
+
+  return (
+    process.env.NEXT_PUBLIC_APP_URL ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000")
+  );
+}
+
 export const metadata: Metadata = {
   title: "Yukthi - AI Infrastructure Cost Optimization",
 
@@ -20,7 +35,7 @@ export const metadata: Metadata = {
 
   keywords: "AI cost optimization, ChatGPT, Claude, Cursor, pricing analysis, cost reduction",
 
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
+  metadataBase: new URL(getAppUrl()),
 
   openGraph: {
     title: "Yukthi - Stop Overpaying for AI Tools",
