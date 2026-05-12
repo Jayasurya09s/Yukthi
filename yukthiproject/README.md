@@ -2,7 +2,8 @@
 
 ## AI Infrastructure Spend Audit & Optimization Platform
 
-**Live:** https://yukthi-one.vercel.app/
+**Live Demo :** https://yukthi-one.vercel.app/
+
 
 Yukthi is a full-stack SaaS platform that helps startups and engineering teams analyze, optimize, and reduce unnecessary AI infrastructure spending across tools such as:
 
